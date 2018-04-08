@@ -39,18 +39,18 @@ void setup() {
   fill_solid(leds, NUM_LEDS, CRGB(0, 0, 0));
   LEDS.setDither(false);
   LEDS.show();
-
   establishContact();  // send string to establish contact until receiver responds
 }
 
-void loop() {
 
+void loop() {
+  
   if (ledsActive) {
     //communication is active:
     //receive  serial and put it on the lights
     //If there's nothing for a while then timeout
     if ((Serial.available() > 3)) { //needs minimum of 3 bytes for 1 led...
-      //if not timed out and leds are active then receive led data
+      //receive led data
       getNumbersFromSerial();
       memcpy8(leds, buf, NUM_LEDS * sizeof(struct CRGB));
       lastActiveTime = millis();
