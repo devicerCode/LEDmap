@@ -12,7 +12,6 @@
 #define NUM_LEDS 20
 #define LED_PIN 4
 #define CLOCK_PIN 5
-#define ONBOARD_LED_PIN 16 //13 on many, 16 on NodeMCU style ESP8266 modules
 long SERIAL_SPEED = 115200; //needs to match processing parts serial speed
 
 const int BUF_SIZE = NUM_LEDS * 3;
@@ -99,8 +98,6 @@ void establishContact() {
 
 void getNumbersFromSerial() {
 
-  //light led to show activity...
-  digitalWrite(ONBOARD_LED_PIN, HIGH);
   int count = 0;
   while (count < BUF_SIZE) {
     if (Serial.available()) {
@@ -109,7 +106,6 @@ void getNumbersFromSerial() {
       count++;
     }
   }
-  digitalWrite(ONBOARD_LED_PIN, LOW);
 }
 
 
