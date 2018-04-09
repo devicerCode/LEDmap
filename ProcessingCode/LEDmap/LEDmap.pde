@@ -3,13 +3,9 @@
  Peter Brittain 2018
  info@devicer.net
  Create mappings automatically from a webcam pointed at your setup
- Works with simpleMap arduino code
+ Works with LEDmap arduino code
  
- -todo
- need to sort out scaling
- and output needs to be done to either 0-255 byte style or int style, selectable ideally
- so needs one new interface object to choose that... radio?
- 
+
  */
 
 import processing.video.*;  //import processing video library - for webcam/video
@@ -141,7 +137,7 @@ void setup() {
   outputChoice = cp5.addRadioButton("selectOutputType")
     .setPosition(650, 430)
     .setSize(40, 20)
-     //maybe not doing anything debug delete this when confirmed
+    //maybe not doing anything debug delete this when confirmed
     .setItemsPerRow(1)
     .setSpacingColumn(20)
     .addItem("byte mapping (0-255)", 0)
@@ -455,7 +451,17 @@ void selectOutput(File selection) {
     println("Window was closed or the user hit cancel.");
   } else {
     println("User selected " + selection.getAbsolutePath());
-    mapping.saveMapping(selection.getAbsolutePath(), 255);
+    int radioValue = (int)outputChoice.getValue();
+    switch(radioValue) {
+    case 0:
+      mapping.saveMapping(selection.getAbsolutePath(), 255);
+      break;
+    case 1:
+      mapping.saveMapping(selection.getAbsolutePath(), 65536);
+      break;
+    default:
+      break;
+    }
   }
 }
 
