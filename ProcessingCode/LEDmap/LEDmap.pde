@@ -1,10 +1,15 @@
 /**
  LED mapping creator
  Peter Brittain 2018
-  
+ info@devicer.net
  Create mappings automatically from a webcam pointed at your setup
  Works with simpleMap arduino code
-
+ 
+ -todo
+ need to sort out scaling
+ and output needs to be done to either 0-255 byte style or int style, selectable ideally
+ so needs one new interface object to choose that... radio?
+ 
  */
 
 import processing.video.*;  //import processing video library - for webcam/video
