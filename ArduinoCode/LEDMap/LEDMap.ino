@@ -84,13 +84,12 @@ void establishContact() {
   int counter;
   CRGB flashColor = CRGB(20, 5, 0);
   while ((Serial.available() <= 0) && (commActive == false)) {
-    Serial.println("LEDmap");   // send an initial string
-    delay(400);
-    int timeVal = millis() / 1000;
+    int timeVal = millis() / 500; //flash and send serial at same rate, reduced to avoid flooding serial
     if (timeVal % 2 == 0) {
       fill_solid(leds, NUM_LEDS, flashColor);
+      Serial.println("LEDmap");   // send an initial string
     } else {
-      fill_solid(leds, NUM_LEDS, CRGB(0, 0, 0);
+      fill_solid(leds, NUM_LEDS, CRGB(0, 0, 0));
     }
     LEDS.show();
   }
