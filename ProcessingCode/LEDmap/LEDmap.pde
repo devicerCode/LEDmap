@@ -49,6 +49,9 @@ boolean automapLastVal = false;
 //camera stuff
 String[] cameras;
 boolean cameraEnabled = false;
+int displayAreaWidth = 640;
+int displayAreaHeight = 480;
+
 
 //LED stuff
 boolean ledDeviceConnected = false; //used to mark if connected device seems to be led controller
@@ -68,12 +71,12 @@ void setup() {
 
   seriallist = Serial.list();
   seriallist = append(seriallist, "NO SERIAL");
-  output = createGraphics(640, 480);
-  blobInput = new PImage(320, 240); //small so blob detect is faster, around 320x240 is generally enough
+  output = createGraphics(displayAreaWidth, displayAreaHeight);
+  blobInput = new PImage(displayAreaWidth/2, displayAreaWidth/2); //small so blob detect is faster, around 320x240 is generally enough
 
   if (cameras == null) {
     println("Didn't find a camera, trying anyway...");
-    cam = new Capture(this, 640, 480);
+    cam = new Capture(this, displayAreaWidth, displayAreaHeight);
   } 
   if (cameras.length == 0) {
     println("There are no cameras available for capture.");
@@ -159,7 +162,7 @@ void draw() {
     output.endDraw();
     newFrame = false;
   }
-  image(output, 0, 0, 640, 480);
+  image(output, 0, 0, displayAreaWidth, displayAreaHeight);
 
   if (ledsReady) {
     clearLEDs();
@@ -327,7 +330,7 @@ void serialEvent(Serial myPort) {
         println("NUM_LEDS: ", NUM_LEDS);
         lightsarray = new byte[NUM_LEDS*3];
         ledsReady = true;
-        mapping = new map2d(NUM_LEDS,640,480);
+        mapping = new map2d(NUM_LEDS,displayAreaWidth,displayAreaHeight);
       }
     }
 
@@ -450,11 +453,11 @@ void selectOutput(File selection) {
 void showLedUnderMouse() {
   float radius = 30;
   PVector mousePos = new PVector(mouseX, mouseY);
-  if ((mouseX>=0)&&(mouseX<640)&&(mouseY>=0)&&(mouseY<480)) {
+  if ((mouseX>=0)&&(mouseX<displayAreaWidth)&&(mouseY>=0)&&(mouseY<displayAreaHeight)) {
     if (mapping != null) {
       for (int i=0; i<mapping.mapCoords.length; i++) {
         if (mapping.mapCoords[i] != null) {
-          PVector screenSizeCoords = new PVector(mapping.mapCoords[i].x*640, mapping.mapCoords[i].y*480);
+          PVector screenSizeCoords = new PVector(mapping.mapCoords[i].x*displayAreaWidth, mapping.mapCoords[i].y*displayAreaHeight);
           float d = mousePos.dist(screenSizeCoords);
           if (d<radius) {
             //light led up if near current mouse pos

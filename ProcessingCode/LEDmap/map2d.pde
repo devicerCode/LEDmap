@@ -46,7 +46,6 @@ class map2d {
   }
 
 
-
   map2d(String filename) {
     //load mapping file
     //
