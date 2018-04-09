@@ -446,10 +446,10 @@ void selectOutput(File selection) {
     int radioValue = (int)outputChoice.getValue();
     switch(radioValue) {
     case 0:
-      mapping.saveMapping(selection.getAbsolutePath(), 255);
+      mapping.saveMappingStructStyle(selection.getAbsolutePath(), 255);
       break;
     case 1:
-      mapping.saveMapping(selection.getAbsolutePath(), 65536);
+      mapping.saveMappingStructStyle(selection.getAbsolutePath(), 65536);
       break;
     default:
       break;

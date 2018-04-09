@@ -41,7 +41,7 @@ class map2d {
   }
 
 
-  void saveMapping(String filename,int scale) {
+  void saveMappingStructStyle(String filename,int scale) {
 
     if (mapping != null) {
       String[] fileOutput = new String[4];
