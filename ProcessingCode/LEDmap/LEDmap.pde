@@ -401,8 +401,6 @@ PVector getLightPositionBlobDet() {
   PVector light = new PVector(0, 0);
   if (theBlobDetection.getBlobNb()>0) {
     Blob tempblob = theBlobDetection.getBlob(0);
-    //light.x = tempblob.x*cam.width;
-    //light.y = tempblob.y*cam.height;
     light.x = tempblob.x;
     light.y = tempblob.y;
   } else {
