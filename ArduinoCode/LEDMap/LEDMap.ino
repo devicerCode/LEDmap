@@ -43,7 +43,7 @@ void setup() {
 
 
 void loop() {
-  
+
   if (ledsActive) {
     //communication is active:
     //receive  serial and put it on the lights
@@ -56,7 +56,6 @@ void loop() {
     }
     if (((millis() - lastActiveTime) > TIMEOUT) ) {
       Serial.println("Timeout! - too long without signal received");
-      //      cycleSerialConnection();
       ledsActive = false;
       commActive = false;
       establishContact();
@@ -77,27 +76,28 @@ void loop() {
       lastActiveTime = millis();
     }
   }
-  
   LEDS.show();
 }
 
 
 void establishContact() {
   int counter;
-  Serial.println("Est contact");
+  CRGB flashColor = CRGB(20, 5, 0);
   while ((Serial.available() <= 0) && (commActive == false)) {
     Serial.println("LEDmap");   // send an initial string
     delay(400);
-    fill_solid(leds, NUM_LEDS, CRGB(counter, counter / 4, 0));
+    int timeVal = millis() / 1000;
+    if (timeVal % 2 == 0) {
+      fill_solid(leds, NUM_LEDS, flashColor);
+    } else {
+      fill_solid(leds, NUM_LEDS, CRGB(0, 0, 0);
+    }
     LEDS.show();
-    counter += 16;
-    counter = counter % 32;
   }
 }
 
 
 void getNumbersFromSerial() {
-
   int count = 0;
   while (count < BUF_SIZE) {
     if (Serial.available()) {
@@ -107,5 +107,3 @@ void getNumbersFromSerial() {
     }
   }
 }
-
-
