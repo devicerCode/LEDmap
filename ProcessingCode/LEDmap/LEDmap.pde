@@ -313,8 +313,6 @@ void serialEvent(Serial myPort) {
   // read the serial buffer:
   String myString = myPort.readStringUntil('\n');
   // if you got any bytes other than the linefeed:
-  //debug
-  println(myString);
   if (myString != null) {
     myString = trim(myString);
     // split the string at the commas
@@ -335,7 +333,6 @@ void serialEvent(Serial myPort) {
         mapping = new map2d(NUM_LEDS, displayAreaWidth, displayAreaHeight);
       }
     }
-
     if ((receivedData[0].equals("LEDmap"))&&(ledDeviceConnected == false)) {
       //Selected Device is likely running the right code...
       //Send byte to then get NUM_LEDS from controller
@@ -359,6 +356,7 @@ void captureEvent(Capture cam)
 
 void drawBlobsAndEdges(boolean drawBlobs, boolean drawEdges)
 {
+  //this code taken from  blobDetection examples as credited above
   output.noFill();
   Blob b;
   EdgeVertex eA, eB;
