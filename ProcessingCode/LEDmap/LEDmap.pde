@@ -145,7 +145,7 @@ void setup() {
     ;
   theBlobDetection = new BlobDetection(blobInput.width, blobInput.height);
   theBlobDetection.setPosDiscrimination(true); //set to detect light not dark
-  theBlobDetection.setThreshold(0.2f); // will detect bright areas whose luminosity > 0.2f;
+  theBlobDetection.setThreshold(0.2f);
   outputChoice.activate(0);
 }
 
@@ -160,8 +160,6 @@ void draw() {
     blobInput.filter(BLUR, 3);
     theBlobDetection.computeBlobs(blobInput.pixels);
     drawBlobsAndEdges(true, true);
-
-    //debug
     if (mapping != null) {
       mapping.drawPositions(output.width, output.height);
     }
@@ -211,19 +209,14 @@ void showAllLEDs() {
 
 
 void automap() {
-  //debug
-  println("automap toggled from", automap);
   if ((ledsReady == true)&&(cameraEnabled==true)) {
     automap = !automap;
-    //debug
-    println("automap", automap, "autolast", automapLastVal);
     if ((automap==true)&&(automapLastVal==false)) {
       startTime = millis();
       ledIndex = 0;
       println("automap started/reset");
     }
     automapLastVal = automap;
-    //flashStatusOff();
     if ((automap==false)&&(automapLastVal==true)) {
       stopAutoMap();
     }
