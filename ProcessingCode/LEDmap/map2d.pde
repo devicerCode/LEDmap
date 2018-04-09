@@ -57,7 +57,7 @@ class map2d {
       fileOutput[1] = xString;
       String yString = "{";
       for (int i=0; i<mapping.mapSize-1; i++) {
-        yString +=int(mapping.mapCoords[i].y*255);
+        yString +=int(mapping.mapCoords[i].y*scale);
         yString +=",";
       }
       yString +=int(mapping.mapCoords[mapping.mapSize-1].y*scale);
