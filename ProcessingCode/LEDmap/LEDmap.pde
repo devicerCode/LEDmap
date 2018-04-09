@@ -455,36 +455,6 @@ void selectOutput(File selection) {
 }
 
 
-//void saveMapping(String filename) {
-
-//  if (mapping != null) {
-//    String[] fileOutput = new String[4];
-//    //String xString 
-//    fileOutput[0] = "struct map2d mapping ={";
-//    String xString = "{";
-//    for (int i=0; i<mapping.mapSize-1; i++) {
-//      xString +=mapping.mapCoords[i].x;
-//      xString +=",";
-//    }
-//    xString +=mapping.mapCoords[mapping.mapSize-1].x;
-//    xString += "},";
-//    fileOutput[1] = xString;
-//    String yString = "{";
-//    for (int i=0; i<mapping.mapSize-1; i++) {
-//      yString +=mapping.mapCoords[i].y;
-//      yString +=",";
-//    }
-//    yString +=mapping.mapCoords[mapping.mapSize-1].y;
-//    yString += "}";
-//    fileOutput[2] = yString;
-//    fileOutput[3] = "};";
-//    saveStrings(filename, fileOutput);
-//    //INFO
-//    println("Mapping file saved as: ", filename);
-//  }
-//}
-
-
 void showLedUnderMouse() {
   float radius = 30;
   PVector mousePos = new PVector(mouseX, mouseY);
