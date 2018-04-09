@@ -83,7 +83,7 @@ void loop() {
 void establishContact() {
   CRGB flashColor = CRGB(20, 5, 0);
   while ((Serial.available() <= 0) && (commActive == false)) {
-    int timeVal = millis() / 500; //flash and send serial at same rate, reduced to avoid flooding serial
+    uint16_t timeVal = (uint16_t)(millis() / 500); //flash and send serial at same rate, reduced to avoid flooding serial
     if (timeVal % 2 == 0) {
       fill_solid(leds, NUM_LEDS, flashColor);
       Serial.println("LEDmap");   // send an initial string
