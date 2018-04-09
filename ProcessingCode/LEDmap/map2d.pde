@@ -3,8 +3,6 @@
 //Needs to be a class that contains 2d led mappings and performs various functions on them
 //to start need to contain mappings, do this as 0-1 range scaling of whatever goes in...
 
-//can later add generators? 
-
 class map2d { 
 
   PVector[] mapCoords;
@@ -43,7 +41,7 @@ class map2d {
   }
 
 
-  void saveMapping256(String filename) {
+  void saveMapping(String filename,int scale) {
 
     if (mapping != null) {
       String[] fileOutput = new String[4];
@@ -51,10 +49,10 @@ class map2d {
       fileOutput[0] = "struct map2d mapping ={";
       String xString = "{";
       for (int i=0; i<mapping.mapSize-1; i++) {
-        xString +=int(mapping.mapCoords[i].x*255);
+        xString +=int(mapping.mapCoords[i].x*scale);
         xString +=",";
       }
-      xString +=int(mapping.mapCoords[mapping.mapSize-1].x*255);
+      xString +=int(mapping.mapCoords[mapping.mapSize-1].x*scale);
       xString += "},";
       fileOutput[1] = xString;
       String yString = "{";
@@ -62,7 +60,7 @@ class map2d {
         yString +=int(mapping.mapCoords[i].y*255);
         yString +=",";
       }
-      yString +=int(mapping.mapCoords[mapping.mapSize-1].y*255);
+      yString +=int(mapping.mapCoords[mapping.mapSize-1].y*scale);
       yString += "}";
       fileOutput[2] = yString;
       fileOutput[3] = "};";

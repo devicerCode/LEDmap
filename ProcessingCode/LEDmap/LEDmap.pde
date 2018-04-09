@@ -446,7 +446,7 @@ void selectOutput(File selection) {
     println("Window was closed or the user hit cancel.");
   } else {
     println("User selected " + selection.getAbsolutePath());
-    mapping.saveMapping256(selection.getAbsolutePath());
+    mapping.saveMapping(selection.getAbsolutePath(),255);
   }
 }
 
