@@ -20,7 +20,6 @@ class map2d {
   void setCoord(int mapPosition, PVector newCoord) {
     if ((mapPosition < this.mapSize)&&(mapPosition >= 0)) {
       mapCoords[mapPosition] = newCoord;
-      //mapCoords[mapPosition] = new PVector(newCoord.x,newCoord.y);
     }
   }
 
@@ -45,7 +44,6 @@ class map2d {
 
     if (mapping != null) {
       String[] fileOutput = new String[4];
-      //String xString 
       fileOutput[0] = "struct map2d mapping ={";
       String xString = "{";
       for (int i=0; i<mapping.mapSize-1; i++) {
@@ -90,8 +88,6 @@ class map2d {
     for (int i =0; i<mapCoords.length; i++) {
       if (mapCoords[i] != null ) {
         if ((mapCoords[i].x >= 0)&&(mapCoords[i].y >= 0)) {
-          //output.strokeWeight(2);
-          //output.stroke(120,120,120);
           output.textSize(24);
           output.fill(255, 120, 120);
           output.rect(mapCoords[i].x*outputwidth, mapCoords[i].y*outputheight, 2, 2);
