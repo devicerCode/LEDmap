@@ -206,7 +206,6 @@ void brightnessSlider(int theBrightness) {
 
 void showAllLEDs() {
   showAllLEDs = !showAllLEDs; 
-  println("toggling showAllLEDs: ", showAllLEDs);
 }
 
 
