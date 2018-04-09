@@ -2,11 +2,8 @@
 //
 //Needs to be a class that contains 2d led mappings and performs various functions on them
 //to start need to contain mappings, do this as 0-1 range scaling of whatever goes in...
-//then functions to ouput 0-255 scaled (byte-scaled) versions for 8bitters (and also just more efficient for small maps)
-//and one that does it as 16bit output
+
 //can later add generators? 
-//Also need constructor that takes in an image? 
-//actually no, just want to do add() and remove() things for it?
 
 class map2d { 
 
@@ -14,11 +11,6 @@ class map2d {
   int mapSize = 0;
   int originalWidth;
   int originalHeight;
-
-  //map2d(int mapSize) {
-  //  this.mapSize = mapSize;
-  //  mapCoords = new PVector[mapSize];
-  //}
 
   map2d(int mapSize, int originalWidth, int originalHeight) {
     this.mapSize = mapSize;
@@ -36,7 +28,6 @@ class map2d {
 
 
   PVector getCoord(int mapPosition) {
-
     if ((mapPosition < mapSize)&&(mapPosition >=0)) {
       return mapCoords[mapPosition];
     } else {
