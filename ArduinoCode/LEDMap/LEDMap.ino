@@ -56,8 +56,6 @@ void loop() {
     }
     if (((millis() - lastActiveTime) > TIMEOUT) ) {
       Serial.println("Timeout! - too long without signal received");
-      ledsActive = false;
-      commActive = false;
       establishContact();
     }
   } else {
@@ -69,6 +67,7 @@ void loop() {
         //got valid response from processing side
         //so send NUM_LEDS to processing side and then
         //set as active ready to receive LED data
+        delay(300);
         Serial.print("NUM_LEDS=");
         Serial.println(NUM_LEDS);
         ledsActive = true;
@@ -81,15 +80,22 @@ void loop() {
 
 
 void establishContact() {
+  ledsActive = false;
+  commActive = false;
   CRGB flashColor = CRGB(20, 5, 0);
+  uint16_t lastTimeVal = 0;
   while ((Serial.available() <= 0) && (commActive == false)) {
     uint16_t timeVal = (uint16_t)(millis() / 500); //flash and send serial at same rate, reduced to avoid flooding serial
-    if (timeVal % 2 == 0) {
+    timeVal = timeVal % 2;
+    if (timeVal == 0) {
       fill_solid(leds, NUM_LEDS, flashColor);
-      Serial.println("LEDmap");   // send an initial string
+      if (lastTimeVal == 1) {
+        Serial.println("LEDmap");   // send an initial string
+      }
     } else {
       fill_solid(leds, NUM_LEDS, CRGB(0, 0, 0));
     }
+    lastTimeVal = timeVal;
     LEDS.show();
   }
 }
