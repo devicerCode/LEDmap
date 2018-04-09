@@ -130,13 +130,14 @@ void setup() {
     .setSize(40, 40)
     ;
   saveMapping = cp5.addButton("saveMapping")
-    .setPosition(750, 330)
+    .setPosition(770, 330)
     .setSize(80, 40)
     .setCaptionLabel("Save mapping as...")
     ;
   cp5.addButton("showAllLEDs")
+    .setCaptionLabel("Show all LEDs")
     .setPosition(650, 380)
-    .setSize(40, 40)
+    .setSize(80, 40)
     ;
   theBlobDetection = new BlobDetection(blobInput.width, blobInput.height);
   theBlobDetection.setPosDiscrimination(true); //set to detect light not dark
@@ -330,7 +331,7 @@ void serialEvent(Serial myPort) {
         println("NUM_LEDS: ", NUM_LEDS);
         lightsarray = new byte[NUM_LEDS*3];
         ledsReady = true;
-        mapping = new map2d(NUM_LEDS,displayAreaWidth,displayAreaHeight);
+        mapping = new map2d(NUM_LEDS, displayAreaWidth, displayAreaHeight);
       }
     }
 

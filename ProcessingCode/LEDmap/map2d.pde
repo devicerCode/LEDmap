@@ -19,13 +19,12 @@ class map2d {
   //  this.mapSize = mapSize;
   //  mapCoords = new PVector[mapSize];
   //}
-  
-  map2d(int mapSize,int originalWidth,int originalHeight) {
+
+  map2d(int mapSize, int originalWidth, int originalHeight) {
     this.mapSize = mapSize;
     mapCoords = new PVector[mapSize];
     this.originalWidth = originalWidth;
     this.originalHeight = originalHeight;
-    
   }
 
   void setCoord(int mapPosition, PVector newCoord) {
@@ -53,34 +52,34 @@ class map2d {
   }
 
 
-void saveMapping256(String filename) {
+  void saveMapping256(String filename) {
 
-  if (mapping != null) {
-    String[] fileOutput = new String[4];
-    //String xString 
-    fileOutput[0] = "struct map2d mapping ={";
-    String xString = "{";
-    for (int i=0; i<mapping.mapSize-1; i++) {
-      xString +=int(mapping.mapCoords[i].x*255);
-      xString +=",";
+    if (mapping != null) {
+      String[] fileOutput = new String[4];
+      //String xString 
+      fileOutput[0] = "struct map2d mapping ={";
+      String xString = "{";
+      for (int i=0; i<mapping.mapSize-1; i++) {
+        xString +=int(mapping.mapCoords[i].x*255);
+        xString +=",";
+      }
+      xString +=int(mapping.mapCoords[mapping.mapSize-1].x*255);
+      xString += "},";
+      fileOutput[1] = xString;
+      String yString = "{";
+      for (int i=0; i<mapping.mapSize-1; i++) {
+        yString +=int(mapping.mapCoords[i].y*255);
+        yString +=",";
+      }
+      yString +=int(mapping.mapCoords[mapping.mapSize-1].y*255);
+      yString += "}";
+      fileOutput[2] = yString;
+      fileOutput[3] = "};";
+      saveStrings(filename, fileOutput);
+      //INFO
+      println("Mapping file saved as: ", filename);
     }
-    xString +=int(mapping.mapCoords[mapping.mapSize-1].x*255);
-    xString += "},";
-    fileOutput[1] = xString;
-    String yString = "{";
-    for (int i=0; i<mapping.mapSize-1; i++) {
-      yString +=int(mapping.mapCoords[i].y*255);
-      yString +=",";
-    }
-    yString +=int(mapping.mapCoords[mapping.mapSize-1].y*255);
-    yString += "}";
-    fileOutput[2] = yString;
-    fileOutput[3] = "};";
-    saveStrings(filename, fileOutput);
-    //INFO
-    println("Mapping file saved as: ", filename);
   }
-}
 
 
 
