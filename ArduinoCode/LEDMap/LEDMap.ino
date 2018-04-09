@@ -81,7 +81,6 @@ void loop() {
 
 
 void establishContact() {
-  int counter;
   CRGB flashColor = CRGB(20, 5, 0);
   while ((Serial.available() <= 0) && (commActive == false)) {
     int timeVal = millis() / 500; //flash and send serial at same rate, reduced to avoid flooding serial
