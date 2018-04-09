@@ -25,8 +25,7 @@ Button automapButton;
 int brightnessSlider = 0;
 int threshold = 0;
 Button saveMapping;
-//Button showAll;
-boolean showAll;
+boolean showAllLEDs;
 
 
 String[] seriallist;
@@ -132,7 +131,7 @@ void setup() {
     .setSize(80, 40)
     .setCaptionLabel("Save mapping as...")
     ;
-  cp5.addButton("showAll")
+  cp5.addButton("showAllLEDs")
     .setPosition(650, 380)
     .setSize(40, 40)
     ;
@@ -179,7 +178,7 @@ void draw() {
         }
       }
     } else {
-      if (showAll) {
+      if (showAllLEDs) {
         fillLEDs((byte)brightnessSlider);
       } else {
         if (mapping == null) {
@@ -197,9 +196,9 @@ void brightnessSlider(int theBrightness) {
   brightnessSlider = int(theBrightness);
 }
 
-void showAll() {
-  showAll = !showAll; 
-  println("toggling showall: ", showAll);
+void showAllLEDs() {
+  showAllLEDs = !showAllLEDs; 
+  println("toggling showAllLEDs: ", showAllLEDs);
 }
 
 
@@ -283,8 +282,6 @@ void SerialPorts(int n) {
 }
 
 
-
-
 void Cameras(int n) {
   //Callback from cp5 - Runs every time a new selection is made
 
@@ -348,13 +345,11 @@ void serialEvent(Serial myPort) {
 }
 
 
-
 void captureEvent(Capture cam)
 {
   cam.read();
   newFrame = true;
 }
-
 
 
 void drawBlobsAndEdges(boolean drawBlobs, boolean drawEdges)
@@ -399,7 +394,6 @@ void drawBlobsAndEdges(boolean drawBlobs, boolean drawEdges)
 }
 
 
-
 PVector getLightPositionBlobDet() {
   PVector light = new PVector(0, 0);
   if (theBlobDetection.getBlobNb()>0) {
@@ -436,8 +430,6 @@ void doSingleLED(int index) {
     }
   }
 }
-
-
 
 
 void saveMapping() {
