@@ -330,7 +330,7 @@ void serialEvent(Serial myPort) {
         println("NUM_LEDS: ", NUM_LEDS);
         lightsarray = new byte[NUM_LEDS*3];
         ledsReady = true;
-        mapping = new map2d(NUM_LEDS);
+        mapping = new map2d(NUM_LEDS,640,480);
       }
     }
 
@@ -450,39 +450,40 @@ void selectOutput(File selection) {
     println("Window was closed or the user hit cancel.");
   } else {
     println("User selected " + selection.getAbsolutePath());
-    saveMapping(selection.getAbsolutePath());
+    mapping.saveMapping256(selection.getAbsolutePath());
   }
 }
 
 
-void saveMapping(String filename) {
+//void saveMapping(String filename) {
 
-  if (mapping != null) {
-    String[] fileOutput = new String[4];
-    //String xString 
-    fileOutput[0] = "struct map2d mapping ={";
-    String xString = "{";
-    for (int i=0; i<mapping.mapSize-1; i++) {
-      xString +=mapping.mapCoords[i].x;
-      xString +=",";
-    }
-    xString +=mapping.mapCoords[mapping.mapSize-1].x;
-    xString += "},";
-    fileOutput[1] = xString;
-    String yString = "{";
-    for (int i=0; i<mapping.mapSize-1; i++) {
-      yString +=mapping.mapCoords[i].y;
-      yString +=",";
-    }
-    yString +=mapping.mapCoords[mapping.mapSize-1].y;
-    yString += "}";
-    fileOutput[2] = yString;
-    fileOutput[3] = "};";
-    saveStrings(filename, fileOutput);
-    //INFO
-    println("Mapping file saved as: ", filename);
-  }
-}
+//  if (mapping != null) {
+//    String[] fileOutput = new String[4];
+//    //String xString 
+//    fileOutput[0] = "struct map2d mapping ={";
+//    String xString = "{";
+//    for (int i=0; i<mapping.mapSize-1; i++) {
+//      xString +=mapping.mapCoords[i].x;
+//      xString +=",";
+//    }
+//    xString +=mapping.mapCoords[mapping.mapSize-1].x;
+//    xString += "},";
+//    fileOutput[1] = xString;
+//    String yString = "{";
+//    for (int i=0; i<mapping.mapSize-1; i++) {
+//      yString +=mapping.mapCoords[i].y;
+//      yString +=",";
+//    }
+//    yString +=mapping.mapCoords[mapping.mapSize-1].y;
+//    yString += "}";
+//    fileOutput[2] = yString;
+//    fileOutput[3] = "};";
+//    saveStrings(filename, fileOutput);
+//    //INFO
+//    println("Mapping file saved as: ", filename);
+//  }
+//}
+
 
 void showLedUnderMouse() {
   float radius = 30;

@@ -12,12 +12,21 @@ class map2d {
 
   PVector[] mapCoords;
   int mapSize = 0;
+  int originalWidth;
+  int originalHeight;
 
-  map2d(int mapSize) {
+  //map2d(int mapSize) {
+  //  this.mapSize = mapSize;
+  //  mapCoords = new PVector[mapSize];
+  //}
+  
+  map2d(int mapSize,int originalWidth,int originalHeight) {
     this.mapSize = mapSize;
     mapCoords = new PVector[mapSize];
+    this.originalWidth = originalWidth;
+    this.originalHeight = originalHeight;
+    
   }
-
 
   void setCoord(int mapPosition, PVector newCoord) {
     if ((mapPosition < this.mapSize)&&(mapPosition >= 0)) {
@@ -44,6 +53,38 @@ class map2d {
     //need to check it fits in numleds size etc...
   }
 
+
+void saveMapping256(String filename) {
+
+  if (mapping != null) {
+    String[] fileOutput = new String[4];
+    //String xString 
+    fileOutput[0] = "struct map2d mapping ={";
+    String xString = "{";
+    for (int i=0; i<mapping.mapSize-1; i++) {
+      xString +=int(mapping.mapCoords[i].x*255);
+      xString +=",";
+    }
+    xString +=int(mapping.mapCoords[mapping.mapSize-1].x*255);
+    xString += "},";
+    fileOutput[1] = xString;
+    String yString = "{";
+    for (int i=0; i<mapping.mapSize-1; i++) {
+      yString +=int(mapping.mapCoords[i].y*255);
+      yString +=",";
+    }
+    yString +=int(mapping.mapCoords[mapping.mapSize-1].y*255);
+    yString += "}";
+    fileOutput[2] = yString;
+    fileOutput[3] = "};";
+    saveStrings(filename, fileOutput);
+    //INFO
+    println("Mapping file saved as: ", filename);
+  }
+}
+
+
+
   void scaleMap() {
     //scale whole map to be 0-1 range
     //need one that preserves aspect and one for each dimension stretch?
@@ -57,20 +98,20 @@ class map2d {
 
 
 
-  void drawPositions(int outputwidth,int outputheight) {
+  void drawPositions(int outputwidth, int outputheight) {
     //if (mapCoords != null) {
-      for (int i =0; i<mapCoords.length; i++) {
-        if (mapCoords[i] != null ) {
-          if ((mapCoords[i].x >= 0)&&(mapCoords[i].y >= 0)) {
-            //output.strokeWeight(2);
-            //output.stroke(120,120,120);
-            output.textSize(24);
-            output.fill(255,120,120);
-            output.rect(mapCoords[i].x*outputwidth,mapCoords[i].y*outputheight,2,2);
-            output.text(i, mapCoords[i].x*outputwidth, mapCoords[i].y*outputheight);
-          }
+    for (int i =0; i<mapCoords.length; i++) {
+      if (mapCoords[i] != null ) {
+        if ((mapCoords[i].x >= 0)&&(mapCoords[i].y >= 0)) {
+          //output.strokeWeight(2);
+          //output.stroke(120,120,120);
+          output.textSize(24);
+          output.fill(255, 120, 120);
+          output.rect(mapCoords[i].x*outputwidth, mapCoords[i].y*outputheight, 2, 2);
+          output.text(i, mapCoords[i].x*outputwidth, mapCoords[i].y*outputheight);
         }
       }
     }
+  }
   //}
 }
