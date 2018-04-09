@@ -25,6 +25,7 @@ Button automapButton;
 int brightnessSlider = 0;
 int threshold = 0;
 Button saveMapping;
+RadioButton outputChoice;
 boolean showAllLEDs;
 
 
@@ -108,7 +109,6 @@ void setup() {
     .addItems(availableCamsList)
     .setOpen(true)
     ;
-
   cp5.addSlider("brightnessSlider")
     .setPosition(650, 270)
     .setRange(0, 255)
@@ -118,7 +118,6 @@ void setup() {
     .setValue(16)
     .setCaptionLabel("Set LED brightness")
     ;
-
   cp5.addSlider("threshold")
     .setPosition(650, 300)
     .setRange(0, 255)
@@ -139,9 +138,19 @@ void setup() {
     .setPosition(650, 380)
     .setSize(80, 40)
     ;
+  outputChoice = cp5.addRadioButton("selectOutputType")
+    .setPosition(650, 430)
+    .setSize(40, 20)
+     //maybe not doing anything debug delete this when confirmed
+    .setItemsPerRow(1)
+    .setSpacingColumn(20)
+    .addItem("byte mapping (0-255)", 0)
+    .addItem("int mapping (0-65536)", 1)
+    ;
   theBlobDetection = new BlobDetection(blobInput.width, blobInput.height);
   theBlobDetection.setPosDiscrimination(true); //set to detect light not dark
   theBlobDetection.setThreshold(0.2f); // will detect bright areas whose luminosity > 0.2f;
+  outputChoice.activate(0);
 }
 
 void draw() {
@@ -446,7 +455,7 @@ void selectOutput(File selection) {
     println("Window was closed or the user hit cancel.");
   } else {
     println("User selected " + selection.getAbsolutePath());
-    mapping.saveMapping(selection.getAbsolutePath(),255);
+    mapping.saveMapping(selection.getAbsolutePath(), 255);
   }
 }
 
