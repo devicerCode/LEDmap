@@ -89,7 +89,7 @@ void setup() {
 
   //Create SerialPorts select drop down list (ScrollableList)
   cp5.addScrollableList("SerialPorts")
-    .setPosition(650, 140)
+    .setPosition(displayAreaWidth+10, 140)
     .setSize(280, 100)
     .setBarHeight(20)
     .setItemHeight(20)
@@ -98,7 +98,7 @@ void setup() {
     ;
   //Create Camera select drop down list (ScrollableList)
   cp5.addScrollableList("Cameras")
-    .setPosition(650, 20)
+    .setPosition(displayAreaWidth+10, 20)
     .setSize(280, 100)
     .setBarHeight(20)
     .setItemHeight(20)
@@ -106,7 +106,7 @@ void setup() {
     .setOpen(true)
     ;
   cp5.addSlider("brightnessSlider")
-    .setPosition(650, 270)
+    .setPosition(displayAreaWidth+10, 270)
     .setRange(0, 255)
     .setSize(200, 20)
     .setColorForeground(color(255, 0, 0))
@@ -115,27 +115,27 @@ void setup() {
     .setCaptionLabel("Set LED brightness")
     ;
   cp5.addSlider("threshold")
-    .setPosition(650, 300)
+    .setPosition(displayAreaWidth+10, 300)
     .setRange(0, 255)
     .setSize(200, 20)
     .setValue(250);
   ;
   automapButton = cp5.addButton("automap")
-    .setPosition(650, 330)
+    .setPosition(displayAreaWidth+10, 330)
     .setSize(40, 40)
     ;
   saveMapping = cp5.addButton("saveMapping")
-    .setPosition(770, 330)
+    .setPosition(displayAreaWidth+130, 330)
     .setSize(80, 40)
     .setCaptionLabel("Save mapping as...")
     ;
   cp5.addButton("showAllLEDs")
     .setCaptionLabel("Show all LEDs")
-    .setPosition(650, 380)
+    .setPosition(displayAreaWidth+10, 380)
     .setSize(80, 40)
     ;
   outputChoice = cp5.addRadioButton("selectOutputType")
-    .setPosition(650, 430)
+    .setPosition(displayAreaWidth+10, 430)
     .setSize(40, 20)
     //maybe not doing anything debug delete this when confirmed
     .setItemsPerRow(1)
