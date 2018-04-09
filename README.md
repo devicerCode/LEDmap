@@ -11,7 +11,10 @@ The code here is in two parts - the arduino part and the processing part. You ne
 - FastLED
 ##### Processing part
 - controlP5
-- blobDetection http://www.v3ga.net/processing/BlobDetection/libraries 
+- blobDetection http://www.v3ga.net/processing/BlobDetection/libraries
+- processing serial (built in)
+- processing video (built in)
+- java.util (you should also have this!)
 
 You quite possibly have all but the blobDetection library already. There are lots of tutorials available elsewhere if you need assistance with installing libraries but it should be very simple with the new library managers.
 
