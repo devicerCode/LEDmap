@@ -288,6 +288,7 @@ void Cameras(int n) {
   String selectedCamera = cp5.get(ScrollableList.class, "Cameras").getItem(n).get("name").toString();
   println(selectedCamera);
   if (selectedCamera.equals("NO CAMERA")) {
+   //INFO
     println("No camera selected");
     cameraEnabled = false;
   } else {
@@ -317,9 +318,11 @@ void serialEvent(Serial myPort) {
       //if there's a connected device but no led count yet then 
       //should be getting it back from sending query below - but on next loop
       //or later...
+      //INFO
       println("Getting NUM_LEDS");
       if (receivedData[1]!=null) {
         NUM_LEDS = int(receivedData[1]);
+        //INFO
         println("NUM_LEDS: ", NUM_LEDS);
         lightsarray = new byte[NUM_LEDS*3];
         ledsReady = true;
@@ -435,6 +438,7 @@ void selectOutput(File selection) {
   if (selection == null) {
     println("Window was closed or the user hit cancel.");
   } else {
+    //INFO
     println("User selected " + selection.getAbsolutePath());
     int radioValue = (int)outputChoice.getValue();
     switch(radioValue) {
