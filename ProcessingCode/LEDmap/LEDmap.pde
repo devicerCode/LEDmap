@@ -2,10 +2,9 @@
  LED mapping creator
  Peter Brittain 2018
  info@devicer.net
- Create mappings automatically from a webcam pointed at your setup
+ Create mappings automatically from a webcam pointed at your addressable LED setup
  Works with LEDmap arduino code
  
-
  */
 
 import processing.video.*;  //import processing video library - for webcam/video
