@@ -4,7 +4,8 @@
  info@devicer.net
  Create mappings automatically from a webcam pointed at your addressable LED setup
  Works with LEDmap arduino code
- 
+ Contains code from blobDetect examples by [Julien 'v3ga' Gachadoat](http://www.v3ga.net)
+ http://www.v3ga.net/processing/BlobDetection/
  */
 
 import processing.video.*;  //import processing video library - for webcam/video
@@ -291,9 +292,6 @@ void SerialPorts(int n) {
 
 void Cameras(int n) {
   //Callback from cp5 - Runs every time a new selection is made
-
-  //DEBUG
-  //println(n, cp5.get(ScrollableList.class, "Cameras").getItem(n));
   String selectedCamera = cp5.get(ScrollableList.class, "Cameras").getItem(n).get("name").toString();
   println(selectedCamera);
   if (selectedCamera.equals("NO CAMERA")) {
