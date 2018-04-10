@@ -38,7 +38,7 @@ struct map2d mapping ={
 {73,100,127,157,182,183,155,128,101,73,72,100,127,154,182,179,151,123,96,68}
 };
 ```
-See the included "Examples" folder for examples of useage using fastLED.
+See the included "Examples" folder for examples of useage using fastLED, as you can see it takes very little code to make complex patterns that work on any layout of pixels spread over an area.
 
 
 
