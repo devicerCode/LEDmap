@@ -1,7 +1,6 @@
 //Whole new rewrite of the mapping stuff
 //
-//Needs to be a class that contains 2d led mappings and performs various functions on them
-//to start need to contain mappings, do this as 0-1 range scaling of whatever goes in...
+//Class to hold mappings, scaled to a 0-1 range
 
 class map2d { 
 
@@ -35,8 +34,7 @@ class map2d {
 
   map2d(String filename) {
     //load mapping file
-    //
-    //need to check it fits in numleds size etc...
+
   }
 
 

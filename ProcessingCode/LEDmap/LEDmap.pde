@@ -85,7 +85,6 @@ void setup() {
 
   List<String> availableCamsList = Arrays.asList(cameras);
   List<String> availablePortsList = Arrays.asList(seriallist);   
-  //List l = Arrays.asList("a", "b");
 
   //Create SerialPorts select drop down list (ScrollableList)
   cp5.addScrollableList("SerialPorts")
