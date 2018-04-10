@@ -18,7 +18,26 @@ The code here is in two parts - the arduino part and the processing part. You ne
 
 You quite possibly have all but the blobDetection library already. There are lots of tutorials available elsewhere if you need assistance with installing libraries but it should be very simple with the new library managers.
 
-####
+### Ouput style
+
+Currently there's one useable output style - outputting byte values (0-255) for each coordinate in the format:
+
+```
+struct map2d {
+  byte x[NUM_LEDS];
+  byte y[NUM_LEDS];
+};
+```
+For convenience this also creates a line for copy and pasting with the NUM_LEDS so an example output is:
+
+```
+#define NUM_LEDS 20
+struct map2d mapping ={
+{248,249,249,248,252,237,233,234,233,233,211,212,212,212,215,187,185,184,184,184},
+{73,100,127,157,182,183,155,128,101,73,72,100,127,154,182,179,151,123,96,68}
+};
+```
+See the included "Examples" folder for examples of useage using fastLED.
 
 
 
