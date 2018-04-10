@@ -20,7 +20,7 @@ You quite possibly have all but the blobDetection library already. There are lot
 
 ### Ouput style
 
-Currently there's one useable output style - outputting byte values (0-255) for each coordinate in the format:
+Currently there's one useable output style when you save the mapping - outputting byte values (0-255) for each coordinate in the format:
 
 ```
 struct map2d {
