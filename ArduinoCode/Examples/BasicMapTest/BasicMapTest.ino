@@ -20,7 +20,7 @@ struct map2d mapping = {
 CRGB leds[NUM_LEDS];
 
 long lastModeChange = 0;
-
+long paletteChangeInterval = 10000; //time in millis to pick new palette to blend to
 #define LED_PIN 4
 #define CLOCK_PIN 5
 CRGBPalette16 currentPalette( PartyColors_p );
@@ -41,7 +41,7 @@ void setup() {
 
 void loop() {
 
-  if (millis() - lastModeChange > 12000) {
+  if (millis() - lastModeChange > paletteChangeInterval) {
     setRandomTargetPalette();
   }
   mappedNoiseBasic();//fill leds with simple 2d noise pattern that moves in 3rd dimension
@@ -98,6 +98,22 @@ void flipXY() {
     mapping.y[i] = mapping.x[i];
     mapping.x[i] = temp;
   }
+}
+
+//from wiki - reflection(X radians or degrees) * reflection(Y radians or degrees) is same as rotation(2*(X-Y))
+void rotate90() {
+  flipLeftRight();
+  flipXY();
+}
+
+void rotate180() {
+  flipTopBottom();
+  flipLeftRight();
+}
+
+void rotate270() {
+  flipXY();
+  flipLeftRight();
 }
 
 
