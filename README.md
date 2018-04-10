@@ -40,6 +40,8 @@ struct map2d mapping ={
 ```
 See the included "Examples" folder for examples of useage using fastLED, as you can see it takes very little code to make complex patterns that work on any layout of pixels spread over an area.
 
+The map coordinates are 0,0 in the top left, 255,255 in the bottom right.
+
 
 
 If you are reading this just now stay tuned for more documentation and proper 1.0 release when I'm a bit happier with how useful it is but it should be useable right now. This is a completely rewritten from scratch version of my old unwieldy hacky code, it lacks a huge number of features which I will hopefully be adding in soon, see 'issues' for some of them.
