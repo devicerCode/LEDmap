@@ -28,8 +28,9 @@ struct map2d {
   byte y[NUM_LEDS];
 };
 ```
-For convenience this also creates a line for copy and pasting with the NUM_LEDS so an example output is:
+It's small, it's simple and it's easy to address the coords of an LED by using int xcoord = mapping.x[position]
 
+For convenience saving the output creates a line for copy and pasting with the NUM_LEDS so an example output is:
 ```
 #define NUM_LEDS 20
 struct map2d mapping ={
