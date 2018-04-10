@@ -32,12 +32,6 @@ class map2d {
   }
 
 
-  map2d(String filename) {
-    //load mapping file
-
-  }
-
-
   void saveMappingStructStyle(String filename,int scale) {
 
     if (mapping != null) {
@@ -65,14 +59,6 @@ class map2d {
       //INFO
       println("Mapping file saved as: ", filename);
     }
-  }
-
-
-
-  void scaleMap() {
-    //scale whole map to be 0-1 range
-    //need one that preserves aspect and one for each dimension stretch?
-    //
   }
 
 
