@@ -43,8 +43,9 @@ class map2d {
   void saveMappingStructStyle(String filename,int scale) {
 
     if (mapping != null) {
-      String[] fileOutput = new String[4];
-      fileOutput[0] = "struct map2d mapping ={";
+      String[] fileOutput = new String[5];
+      fileOutput[0] = "#define NUM_LEDS "+mapSize;
+      fileOutput[1] = "struct map2d mapping ={";
       String xString = "{";
       for (int i=0; i<mapping.mapSize-1; i++) {
         xString +=int(mapping.mapCoords[i].x*scale);
@@ -52,7 +53,7 @@ class map2d {
       }
       xString +=int(mapping.mapCoords[mapping.mapSize-1].x*scale);
       xString += "},";
-      fileOutput[1] = xString;
+      fileOutput[2] = xString;
       String yString = "{";
       for (int i=0; i<mapping.mapSize-1; i++) {
         yString +=int(mapping.mapCoords[i].y*scale);
@@ -60,8 +61,8 @@ class map2d {
       }
       yString +=int(mapping.mapCoords[mapping.mapSize-1].y*scale);
       yString += "}";
-      fileOutput[2] = yString;
-      fileOutput[3] = "};";
+      fileOutput[3] = yString;
+      fileOutput[4] = "};";
       saveStrings(filename, fileOutput);
       //INFO
       println("Mapping file saved as: ", filename);
@@ -88,7 +89,7 @@ class map2d {
     for (int i =0; i<mapCoords.length; i++) {
       if (mapCoords[i] != null ) {
         if ((mapCoords[i].x >= 0)&&(mapCoords[i].y >= 0)) {
-          output.textSize(24);
+          output.textSize(16);
           output.fill(255, 120, 120);
           output.rect(mapCoords[i].x*outputwidth, mapCoords[i].y*outputheight, 2, 2);
           output.text(i, mapCoords[i].x*outputwidth, mapCoords[i].y*outputheight);
