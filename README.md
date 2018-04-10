@@ -10,8 +10,10 @@ The code here is in two parts - the arduino part and the processing part. You ne
 ##### Arduino part
 - FastLED
 ##### Processing part
-- controlP5
-- blobDetection http://www.v3ga.net/processing/BlobDetection/libraries
+- controlP5 by Andreas Schlegel
+http://www.sojamo.de/libraries/controlP5
+- blobDetection
+http://www.v3ga.net/processing/BlobDetection/
 - processing serial (built in)
 - processing video (built in)
 - java.util (you should also have this!)
