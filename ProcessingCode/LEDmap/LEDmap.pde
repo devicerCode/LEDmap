@@ -149,10 +149,10 @@ void setup() {
 }
 
 void draw() {
+  background(128);
   theBlobDetection.setThreshold(threshold/255.0);
   if ((cam != null) &&(newFrame==true)) {
     newFrame=false;
-    background(128);
     output.beginDraw();
     output.copy(cam, 0, 0, cam.width, cam.height, 0, 0, output.width, output.height);
     blobInput.copy(cam, 0, 0, cam.width, cam.height, 0, 0, blobInput.width, blobInput.height);
@@ -196,6 +196,7 @@ void draw() {
     }
     myPort.write(lightsarray);
   }
+  drawLEDsSizeIndicator();
 }
 
 void brightnessSlider(int theBrightness) {
@@ -203,7 +204,7 @@ void brightnessSlider(int theBrightness) {
 }
 
 void showAllLEDs() {
-  showAllLEDs = !showAllLEDs; 
+  showAllLEDs = !showAllLEDs;
 }
 
 
@@ -287,7 +288,7 @@ void Cameras(int n) {
   String selectedCamera = cp5.get(ScrollableList.class, "Cameras").getItem(n).get("name").toString();
   println(selectedCamera);
   if (selectedCamera.equals("NO CAMERA")) {
-   //INFO
+    //INFO
     println("No camera selected");
     cameraEnabled = false;
   } else {
@@ -470,5 +471,13 @@ void showLedUnderMouse() {
         }
       }
     }
+  }
+}
+
+void drawLEDsSizeIndicator(){
+   if (NUM_LEDS != 0) {
+    stroke(255);
+    textSize(20);
+    text(NUM_LEDS + " LEDs", displayAreaWidth+220, 350);
   }
 }
