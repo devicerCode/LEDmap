@@ -39,19 +39,19 @@ void setup() {
 
 }
 
-/////////////////////////////////////////////////////////////////////////////
 void loop() {
 
   if (millis() - lastModeChange > 12000) {
     setRandomTargetPalette();
   }
-  mappedNoiseBasic();//fill leds with simple 2d noise pattern that moves in 3rd dimension
+  mapTestQuadrants();//fill leds with simple 2d noise pattern that moves in 3rd dimension
   nblendPaletteTowardPalette(currentPalette, targetPalette, 2);
   FastLED.show();
-  //Serial.println("workin");
 }
 
+
 void mappedNoiseBasic() {
+  //simple 2d noise pattern that moves through 3rd dimension for nice swirly movement
   int noiseTempThing = 0;
   uint16_t scale = 2;
   int timeVal = (int)(millis() >> 2);
@@ -63,6 +63,7 @@ void mappedNoiseBasic() {
 
 
 void verticalOneDimensionScroll() {
+  //all pixels at same y get same value, constantly scrolls up
   uint16_t timeVal = (uint16_t)(millis() >> 2);
   for (int i = 0; i < NUM_LEDS; i++) {
     uint8_t noiseTempThing = inoise8((mapping.y[i] + timeVal));
@@ -90,8 +91,7 @@ void flipLeftRight() {
 }
 
 void flipXY() {
-  //mirror on 45 axis i think?
-  //swaps x and y so whatever that does...
+  //mirror on 45 axis
   byte temp = 0;
   for (int i = 0; i < NUM_LEDS; i++) {
     temp = mapping.y[i];
@@ -121,7 +121,8 @@ void mapTestQuadrants() {
 
 
 void singleWhite() {
-  int currentpos = millis() / 100;
+  //fast single pixel move around whole strip, no mapping.
+  uint16_t currentpos = (uint16_t)(millis() / 100);
   currentpos = currentpos % NUM_LEDS;
   for (int i = 0; i < NUM_LEDS; i++) {
     if (i == currentpos) {
