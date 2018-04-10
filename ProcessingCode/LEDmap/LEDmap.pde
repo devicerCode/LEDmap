@@ -60,7 +60,7 @@ byte[] lightsarray;
 map2d mapping;
 
 void setup() {
-  size(1024, 800);
+  size(1200, 800);
   cp5 = new ControlP5(this);
 
   cameras = Capture.list();
@@ -122,20 +122,20 @@ void setup() {
   ;
   automapButton = cp5.addButton("automap")
     .setPosition(displayAreaWidth+10, 330)
-    .setSize(40, 40)
+    .setSize(50, 40)
     ;
   saveMapping = cp5.addButton("saveMapping")
-    .setPosition(displayAreaWidth+130, 330)
+    .setPosition(displayAreaWidth+10, 430)
     .setSize(80, 40)
     .setCaptionLabel("Save mapping as...")
     ;
   cp5.addButton("showAllLEDs")
     .setCaptionLabel("Show all LEDs")
-    .setPosition(displayAreaWidth+10, 380)
+    .setPosition(displayAreaWidth+130, 330)
     .setSize(80, 40)
     ;
   outputChoice = cp5.addRadioButton("selectOutputType")
-    .setPosition(displayAreaWidth+10, 430)
+    .setPosition(displayAreaWidth+10, 380)
     .setSize(40, 20)
     //maybe not doing anything debug delete this when confirmed
     .setItemsPerRow(1)
