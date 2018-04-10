@@ -44,7 +44,7 @@ void loop() {
   if (millis() - lastModeChange > 12000) {
     setRandomTargetPalette();
   }
-  mapTestQuadrants();//fill leds with simple 2d noise pattern that moves in 3rd dimension
+  mappedNoiseBasic();//fill leds with simple 2d noise pattern that moves in 3rd dimension
   nblendPaletteTowardPalette(currentPalette, targetPalette, 2);
   FastLED.show();
 }
