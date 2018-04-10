@@ -1,37 +1,39 @@
 #include "FastLED.h"
 //next step is separating to a proper class but this is neat and small enough for now
 //majority of mem use is NUM_LEDS*3 + NUM_LEDS*2
-#define NUM_LEDS 20
+#define NUM_LEDS 60
 
-struct map2d{
-
-byte x[NUM_LEDS];
-byte y[NUM_LEDS]; 
+struct map2d {
+  byte x[NUM_LEDS];
+  byte y[NUM_LEDS];
 };
 
-struct map2d mapping ={
-{116, 116, 116, 116, 116, 116, 116, 116, 116, 116, 116, 116, 116, 116, 116, 116, 116, 116, 116, 116, 116, 116, 110, 105, 99, 94, 88, 83, 77, 72, 66, 60, 55, 49, 44, 38, 33, 27, 22, 16, 11, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 11, 16, 22, 27, 33, 38, 44, 49, 55, 60, 66, 72, 77, 83, 88, 94, 99, 105, 110, 255, 249, 243, 238, 232, 227, 221, 216, 210, 205, 199, 194, 188, 182, 177, 171, 166, 160, 155, 149, 144, 138, 138, 138, 138, 138, 138, 138, 138, 138, 138, 138, 138, 138, 138, 138, 138, 138, 138, 138, 138, 138, 138, 144, 149, 155, 160, 166, 171, 177, 182, 188, 194, 199, 205, 210, 216, 221, 227, 232, 238, 243, 249, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255},
-{116, 110, 105, 99, 94, 88, 83, 77, 72, 66, 60, 55, 49, 44, 38, 33, 27, 22, 16, 11, 5, 116, 116, 116, 116, 116, 116, 116, 116, 116, 116, 116, 116, 116, 116, 116, 116, 116, 116, 116, 116, 116, 0, 5, 11, 16, 22, 27, 33, 38, 44, 49, 55, 60, 66, 72, 77, 83, 88, 94, 99, 105, 110, 116, 116, 116, 116, 116, 116, 116, 116, 116, 116, 116, 116, 116, 116, 116, 116, 116, 116, 116, 116, 116, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 11, 16, 22, 27, 33, 38, 44, 49, 55, 60, 66, 72, 77, 83, 88, 94, 99, 105, 110, 116, 116, 116, 116, 116, 116, 116, 116, 116, 116, 116, 116, 116, 116, 116, 116, 116, 116, 116, 116, 116, 116, 110, 105, 99, 94, 88, 83, 77, 72, 66, 60, 55, 49, 44, 38, 33, 27, 22, 16, 11, 5}
+//struct map2d mapping ={
+//{0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19},
+//{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+//};
+struct map2d mapping = {
+  {248, 248, 250, 248, 252, 237, 233, 234, 233, 233, 211, 212, 212, 212, 215, 187, 184, 184, 184, 184, 164, 164, 164, 163, 165, 145, 143, 144, 144, 143, 107, 104, 103, 103, 100, 81, 84, 84, 84, 87, 68, 65, 65, 65, 61, 38, 42, 41, 43, 45, 27, 24, 23, 24, 19, 5, 6, 7, 8, 9},
+  {73, 100, 127, 157, 182, 183, 155, 128, 101, 73, 72, 100, 127, 154, 182, 179, 151, 123, 96, 68, 67, 94, 120, 147, 174, 171, 145, 119, 93, 67, 85, 110, 135, 157, 183, 181, 159, 134, 108, 84, 85, 108, 133, 157, 180, 182, 158, 132, 108, 84, 86, 109, 133, 157, 180, 177, 156, 132, 107, 84}
 };
+
 CRGB leds[NUM_LEDS];
 
 long lastModeChange = 0;
 
-const int LED_PIN = 4;
-
+#define LED_PIN 4
+#define CLOCK_PIN 5
 CRGBPalette16 currentPalette( PartyColors_p );
 CRGBPalette16 targetPalette( PartyColors_p );
 
 TBlendType  currentBlending;
 
 void setup() {
-//  Serial.begin(115200);
-  FastLED.addLeds<WS2812, LED_PIN, GRB>(leds, NUM_LEDS);
-  
-  FastLED.clear();
-  fill_solid(leds, NUM_LEDS, CRGB(0, 0, 0));
+  Serial.begin(115200);
+  //  FastLED.addLeds<WS2812, LED_PIN, GRB>(leds, NUM_LEDS);
+  FastLED.addLeds<APA102, LED_PIN, CLOCK_PIN, BGR, DATA_RATE_MHZ(24)>(leds, NUM_LEDS);
   FastLED.setDither(false);
-  FastLED.show();
+  //  FastLED.show();
   currentBlending = LINEARBLEND;
   setRandomTargetPalette();
 
@@ -43,36 +45,30 @@ void loop() {
   if (millis() - lastModeChange > 12000) {
     setRandomTargetPalette();
   }
-  mapNoiseTest();//fill leds with simple 2d noise pattern that moves in 3rd dimension
+  mappedNoiseBasic();//fill leds with simple 2d noise pattern that moves in 3rd dimension
   nblendPaletteTowardPalette(currentPalette, targetPalette, 2);
   FastLED.show();
-
+  //Serial.println("workin");
 }
 
-
-
-void mapNoiseTest() {
+void mappedNoiseBasic() {
   int noiseTempThing = 0;
-  int timeVal = (int)millis()>>3;
+  uint16_t scale = 2;
+  int timeVal = (int)(millis() >> 2);
   for (int i = 0; i < NUM_LEDS; i++) {
-    noiseTempThing = inoise16(mapping.x[i] * 1, mapping.y[i] * 1, timeVal);
+    noiseTempThing = inoise8(mapping.x[i] * scale, mapping.y[i] * scale, timeVal);
     leds[i] = ColorFromPalette( currentPalette, noiseTempThing, 255, currentBlending);
   }
 }
 
 
-
-
 void verticalOneDimensionScroll() {
-
-  int timeVal = (int)millis()>>2;
+  uint16_t timeVal = (uint16_t)(millis() >> 2);
   for (int i = 0; i < NUM_LEDS; i++) {
     uint8_t noiseTempThing = inoise8((mapping.y[i] + timeVal));
     leds[i] = ColorFromPalette( currentPalette, noiseTempThing, 255, currentBlending);
   }
 }
-
-
 
 
 //test code to flip mappings
@@ -106,7 +102,7 @@ void flipXY() {
 
 
 void mapTestQuadrants() {
-//show different colour in each quarter so you can see which way round it is
+  //show different colour in each quarter so you can see which way round it is
   for (int i = 0; i < NUM_LEDS; i++) {
     if ((mapping.x[i] < 128) && (mapping.y[i] < 128)) {
       leds[i] = CRGB(255, 0, 0);
@@ -125,7 +121,6 @@ void mapTestQuadrants() {
 
 
 void singleWhite() {
-
   int currentpos = millis() / 100;
   currentpos = currentpos % NUM_LEDS;
   for (int i = 0; i < NUM_LEDS; i++) {
@@ -139,7 +134,6 @@ void singleWhite() {
 
 
 void setRandomTargetPalette() {
-
   targetPalette = CRGBPalette16(
                     CHSV(0, 255, 0),
                     CHSV( random8(), 255, 32),
@@ -147,6 +141,5 @@ void setRandomTargetPalette() {
                     CHSV( random8(), 128, 255)
                   );
 }
-
 
 

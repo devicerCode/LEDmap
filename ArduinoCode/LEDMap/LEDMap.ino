@@ -5,11 +5,11 @@
   When powered on all pixels flash to indicate ready to connect
   SERIAL_SPEED needs to match processing codes equivalent
   NUM_LEDS size is sent to processing side automatically
-  Code by info@devicer.net
+  Code by Peter Brittain, info@devicer.net
 */
 #include <FastLED.h>
 
-#define NUM_LEDS 20
+#define NUM_LEDS 60
 #define LED_PIN 4
 #define CLOCK_PIN 5
 long SERIAL_SPEED = 115200; //needs to match processing parts serial speed
