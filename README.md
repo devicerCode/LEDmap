@@ -8,7 +8,7 @@ The code here is in two parts - the arduino part and the processing part. You ne
 
 ### Dependencies
 ##### Arduino part
-- FastLED
+- FastLED http://fastled.io/
 ##### Processing part
 - controlP5 by Andreas Schlegel
 http://www.sojamo.de/libraries/controlP5
